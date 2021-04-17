@@ -7,7 +7,7 @@ using MQTTnet.Client;
 using MQTTnet.Client.Options;
 using MQTTnet.Extensions.ManagedClient;
 
-namespace ClassLibrary.Mqtt
+namespace Infrastructure.Mqtt
 {
     public class Publisher : Client
     {
@@ -19,12 +19,12 @@ namespace ClassLibrary.Mqtt
         {
             if (_client == null)
             {
-                _logger.Log("Client is not absent");
+                _logger.Log(nameof(Publisher), "Client is absent");
                 return;
             }
             else if(!_client.IsConnected)
             {
-                _logger.Log("Client is not connected");
+                _logger.Log(nameof(Publisher), "Client is not connected");
                 return;
             }
 
@@ -35,7 +35,7 @@ namespace ClassLibrary.Mqtt
                 .WithRetainFlag(msg.Retain)
                 .Build();
 
-            _logger.Log($"publishing at {DateTime.UtcNow.ToString(CultureInfo.InvariantCulture)}");    
+            _logger.Log(nameof(Publisher), $"Publishing topic: {msg.Topic}, at: {DateTime.UtcNow.ToString(CultureInfo.InvariantCulture)}");    
             _client.PublishAsync(testMessage);
         }
         

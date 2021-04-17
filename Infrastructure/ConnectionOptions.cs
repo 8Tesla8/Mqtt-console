@@ -11,6 +11,5 @@ namespace ClassLibrary.Connection
             IpAddress = ipAddress;
         }
 
-
     }
 }

@@ -4,7 +4,7 @@ using MQTTnet;
 using MQTTnet.Protocol;
 using MQTTnet.Server;
 
-namespace ClassLibrary.Mqtt
+namespace Infrastructure.Mqtt
 {
     public class Broker
     {
@@ -22,12 +22,13 @@ namespace ClassLibrary.Mqtt
             var optionsBuilder = new MqttServerOptionsBuilder()
                     .WithConnectionValidator(context =>
                     {
-                        _logger?.Log($"{context.ClientId} connection validator for c.Endpoint: {context.Endpoint}");
+                        _logger?.Log(nameof(Broker),$"{context.ClientId} connection validator for c.Endpoint: {context.Endpoint}");
                         context.ReasonCode = MqttConnectReasonCode.Success;
                     })
                     .WithApplicationMessageInterceptor(context =>
                     {
-                        //Console.WriteLine("WithApplicationMessageInterceptor block merging data");
+                        _logger?.Log(nameof(Broker), $"Interceptor data");
+
                         //var newData = Encoding.UTF8.GetBytes(DateTime.Now.ToString("O"));
                         //var oldData = context.ApplicationMessage.Payload;
                         //var mergedData = newData.Concat(oldData).ToArray();

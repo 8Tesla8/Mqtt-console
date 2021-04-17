@@ -1,6 +1,4 @@
 using System;
-using System.Globalization;
-using System.Text;
 using ClassLibrary.Connection;
 using MQTTnet;
 using MQTTnet.Client;
@@ -9,7 +7,7 @@ using MQTTnet.Client.Disconnecting;
 using MQTTnet.Client.Options;
 using MQTTnet.Extensions.ManagedClient;
 
-namespace ClassLibrary.Mqtt
+namespace Infrastructure.Mqtt
 {
     //subscriber
     public class Client
@@ -65,7 +63,7 @@ namespace ClassLibrary.Mqtt
             {
                 OnConnected?.Invoke(e);
                 
-                //Subscribe to topic
+                //subscribing to a topic
                 if (!string.IsNullOrEmpty(topic))
                 {
                     _topic = topic;

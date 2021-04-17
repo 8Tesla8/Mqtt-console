@@ -1,4 +1,4 @@
-namespace ClassLibrary.Mqtt
+namespace Infrastructure.Mqtt
 {
     public class Message
     {
