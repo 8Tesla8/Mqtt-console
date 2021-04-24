@@ -15,7 +15,15 @@ namespace Infrastructure.Mqtt
         {
             _logger = logger;
         }
-        
+
+        public ConnectionOptions GetConnectionOptions()
+        {
+            return new ConnectionOptions(
+                _mqttServer.Options.DefaultEndpointOptions.BoundInterNetworkAddress.ToString(),
+                _mqttServer.Options.DefaultEndpointOptions.Port
+                );
+        }
+
         public void Start(ConnectionOptions options)
         {
             //configure options
@@ -27,7 +35,7 @@ namespace Infrastructure.Mqtt
                     })
                     .WithApplicationMessageInterceptor(context =>
                     {
-                        _logger?.Log(nameof(Broker), $"Interceptor data");
+                        _logger?.Log(nameof(Broker), $"Intercept data");
 
                         //var newData = Encoding.UTF8.GetBytes(DateTime.Now.ToString("O"));
                         //var oldData = context.ApplicationMessage.Payload;
