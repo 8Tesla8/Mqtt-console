@@ -8,7 +8,7 @@ namespace Infrastructure
 
     public class ConsoleLogger : ICustomLogger
     {
-        public void Log(string message)
+        private void Log(string message)
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine(message);

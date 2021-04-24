@@ -28,7 +28,7 @@ namespace Infrastructure.Mqtt
                 return;
             }
 
-            var testMessage = new MqttApplicationMessageBuilder()
+            var message = new MqttApplicationMessageBuilder()
                 .WithTopic(msg.Topic)
                 .WithPayload(msg.Payload)
                 .WithExactlyOnceQoS()
@@ -36,7 +36,7 @@ namespace Infrastructure.Mqtt
                 .Build();
 
             _logger.Log(nameof(Publisher), $"Publishing topic: {msg.Topic}, at: {DateTime.UtcNow.ToString(CultureInfo.InvariantCulture)}");    
-            _client.PublishAsync(testMessage);
+            _client.PublishAsync(message);
         }
         
 

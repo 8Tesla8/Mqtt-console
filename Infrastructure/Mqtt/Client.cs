@@ -52,9 +52,6 @@ namespace Infrastructure.Mqtt
 
             
             // Create a new MQTT client.
-            //var factory = new MqttFactory();
-            //_client = factory.CreateMqttClient();
-
             _client = new MqttFactory().CreateManagedMqttClient();
 
             
